@@ -10,7 +10,7 @@
         "noImplicitThis": true,
         "noFallthroughCasesInSwitch": true,
         "noImplicitReturns": true,
-
+        "outDir": "./out",
         "lib": [
             "es2015"
         ]

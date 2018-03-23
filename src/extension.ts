@@ -1,29 +1,82 @@
-'use strict';
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
+/*---------------------------------------------------------
+ * Copyright (C) Microsoft Corporation. All rights reserved.
+ *--------------------------------------------------------*/
+
 import * as vscode from 'vscode';
+import * as path from 'path';
 
-// this method is called when your extension is activated
-// your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
+    const pendingLaunchMap = new Map<number, [(msg) => void, () => void]>();
 
-    // Use the console to output diagnostic information (console.log) and errors (console.error)
-    // This line of code will only be executed once when your extension is activated
-    console.log('Congratulations, your extension "node-chakracore-time-travel-debugger" is now active!');
+    vscode.debug.onDidReceiveDebugSessionCustomEvent((e: vscode.DebugSessionCustomEvent) => {
+        if (e.event !== 'ttdLaunch') {
+            return;
+        }
 
-    // The command has been defined in the package.json file
-    // Now provide the implementation of the command with  registerCommand
-    // The commandId parameter must match the command field in package.json
-    let disposable = vscode.commands.registerCommand('extension.sayHello', () => {
-        // The code you place here will be executed every time your command is executed
+        try {
+            if (e.body.state === 'start') {
+                vscode.window.withProgress({ location: vscode.ProgressLocation.Window, title: 'TTD Launch Status' }, p => {
+                    return new Promise((resolve, reject) => {
+                        p.report({ message: 'TTD: Configuring Time-Travel Trace.' });
 
-        // Display a message box to the user
-        vscode.window.showInformationMessage('Hello World!');
+                        pendingLaunchMap.set(e.body.id, [
+                            (msg) => p.report({ message: msg }),
+                            () => resolve()
+                        ]);
+                    });
+                });
+            } else if (e.body.state === 'write') {
+                (pendingLaunchMap.get(e.body.id)[0])('TTD: Writing Time-Travel Trace.');
+            } else if (e.body.state === 'complete') {
+                if (e.body.payload.launch) {
+                    (pendingLaunchMap.get(e.body.id)[0])('TTD: Launching Time-Travel Debug Configuration.');
+
+                    vscode.debug.startDebugging(undefined, e.body.payload.config).then(() => {
+                        (pendingLaunchMap.get(e.body.id)[1])();
+                        pendingLaunchMap.delete(e.body.id);
+                    });
+                } else {
+                    (pendingLaunchMap.get(e.body.id)[0])('TTD: Launch Aborted!');
+
+                    (pendingLaunchMap.get(e.body.id)[1])();
+                    pendingLaunchMap.delete(e.body.id);
+                }
+            } else {
+                // e.body.state === 'fail'
+
+                (pendingLaunchMap.get(e.body.id)[1])();
+                pendingLaunchMap.delete(e.body.id);
+
+                vscode.window.showErrorMessage('TTD: Failed to launch time-travel debugging session!');
+            }
+        } catch (ex) {
+            ;
+        }
     });
 
-    context.subscriptions.push(disposable);
+    const provider = new NodeDebugTTDConfigurationProvider();
+    context.subscriptions.push(vscode.debug.registerDebugConfigurationProvider('node-chakracore-time-travel-debugger', provider));
+    context.subscriptions.push(provider);
 }
 
-// this method is called when your extension is deactivated
 export function deactivate() {
 }
+
+class NodeDebugTTDConfigurationProvider implements vscode.DebugConfigurationProvider {
+    resolveDebugConfiguration(folder: vscode.WorkspaceFolder | undefined, config: vscode.DebugConfiguration, token?: vscode.CancellationToken): vscode.ProviderResult<vscode.DebugConfiguration> {
+        config.protocol = 'inspector';
+        config.runtimeExecutable = path.join(__dirname, '../nodebins/node.exe');
+        config.runtimeArgs = [
+            '--nolazy',
+            '--tt-debug'
+        ];
+        config.console = "internalConsole";
+
+        return config;
+    }
+
+    dispose() {
+    }
+}
+
+
