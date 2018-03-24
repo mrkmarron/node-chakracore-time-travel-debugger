@@ -171,7 +171,7 @@
         "configurationSnippets": [
           {
             "label": "Time-Travel Node Launch",
-            "description": "Launch NodeChakra in Time-Travel Mode",
+            "description": "Launch NodeChakraCore in Time-Travel Mode",
             "body": {
               "name": "TTD Enabled Launch",
               "type": "node-chakracore-time-travel-debugger",

@@ -65,7 +65,13 @@ export function deactivate() {
 class NodeDebugTTDConfigurationProvider implements vscode.DebugConfigurationProvider {
     resolveDebugConfiguration(folder: vscode.WorkspaceFolder | undefined, config: vscode.DebugConfiguration, token?: vscode.CancellationToken): vscode.ProviderResult<vscode.DebugConfiguration> {
         config.protocol = 'inspector';
-        config.runtimeExecutable = path.join(__dirname, '../nodebins/node.exe');
+        if (process.platform === 'win32') {
+            config.runtimeExecutable = path.join(__dirname, '../nodebins/win32/node.exe');
+        } else if (process.platform === 'linux') {
+            config.runtimeExecutable = path.join(__dirname, '../nodebins/linux/node.exe');
+        } else {
+            config.runtimeExecutable = path.join(__dirname, '../nodebins/darwin/node');
+        }
         config.runtimeArgs = [
             '--nolazy',
             '--tt-debug'
