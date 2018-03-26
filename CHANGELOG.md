@@ -1,7 +1,7 @@
 # Change Log
-All notable changes to the "node-chakracore-time-travel-debugger" extension will be documented in this file.
-
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+## [Initial release]
+- Add support for mixed live/time-travel debugging.
+- Configuration template for launch.json.
 
 ## [Unreleased]
-- Initial release
+- Bug fixes.
