@@ -1,8 +1,8 @@
 {
   "name": "node-chakracore-time-travel-debugger",
   "displayName": "NodeChakra Time Travel Debug",
-  "version": "0.1.0",
-  "publisher": "Mark Marron",
+  "version": "0.1.1",
+  "publisher": "ttd-trace-tools",
   "description": "Node debugger with time-travel support",
   "categories": [
     "Debuggers"
@@ -173,7 +173,7 @@
             "label": "Time-Travel Node Launch",
             "description": "Launch NodeChakraCore in Time-Travel Mode",
             "body": {
-              "name": "TTD Enabled Launch",
+              "name": "Time-Travel Live",
               "type": "node-chakracore-time-travel-debugger",
               "request": "launch",
               "program": "^\"\\${workspaceFolder}/${1:app.js}\"",

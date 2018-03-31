@@ -79,12 +79,11 @@ export class NodeDebugTTDAdapter extends ChromeDebugAdapter {
             "config": {
                 "type": "node",
                 "request": "launch",
-                "name": "TTDReplay",
+                "name": "Time-Travel Replay",
                 "protocol": "inspector",
                 "stopOnEntry": true,
                 "runtimeExecutable": this._runtimeExecutableForTTD,
                 "runtimeArgs": [
-                    "--nolazy",
                     `--replay-debug=${tracingDir}`
                 ],
                 "console": "internalConsole",
@@ -93,8 +92,8 @@ export class NodeDebugTTDAdapter extends ChromeDebugAdapter {
         };
     }
 
-    private launchStatusNotify(state: string, id: number, data?: object) {
-        this._session.sendEvent(new Event("ttdLaunch", { state: state, id: id, payload: data || {} }));
+    private launchStatusNotify(state: string, id: number, data?: object | string) {
+        this._session.sendEvent(new Event("ttdLaunch", { state: state, id: id, payload: data }));
     }
 
     private launchSetupForReverseExecution(): Promise<void | string> {
@@ -123,12 +122,18 @@ export class NodeDebugTTDAdapter extends ChromeDebugAdapter {
                 return (<TimeTravelRuntime>this.chrome).TimeTravel.writeTTDLog({ uri: logDir });
             })
             .then(() => {
-                this.launchStatusNotify("complete", launchID, this.makeReplayConfig(logDir));
-                this._pendingTTDLaunch = false;
-                return JSON.stringify({ "launch": true });
+                if (!fs.existsSync(path.join(logDir, "ttdlog.log"))) {
+                    this.launchStatusNotify("fail", launchID, "Could not write TTD trace -- has synchronous module loading completed?");
+                    return JSON.stringify({ "launch": false });
+                } else {
+                    this.launchStatusNotify("complete", launchID, this.makeReplayConfig(logDir));
+                    this._pendingTTDLaunch = false;
+                    return JSON.stringify({ "launch": true });
+                }
             })
             .catch((ex) => {
-                this.launchStatusNotify("fail", ex);
+                this.launchStatusNotify("fail", launchID, JSON.stringify(ex));
+                return JSON.stringify({ "launch": false });
             });
     }
 

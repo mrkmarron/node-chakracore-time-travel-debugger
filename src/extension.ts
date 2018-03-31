@@ -47,7 +47,11 @@ export function activate(context: vscode.ExtensionContext) {
                 (pendingLaunchMap.get(e.body.id)[1])();
                 pendingLaunchMap.delete(e.body.id);
 
-                vscode.window.showErrorMessage('TTD: Failed to launch time-travel debugging session!');
+                let msg = '';
+                if(e.body && e.body.payload) {
+                    msg = ' -- ' + JSON.stringify(e.body.payload);
+                }
+                vscode.window.showErrorMessage('TTD: Failed to launch time-travel debugging session' + msg);
             }
         } catch (ex) {
             ;
@@ -73,7 +77,6 @@ class NodeDebugTTDConfigurationProvider implements vscode.DebugConfigurationProv
             config.runtimeExecutable = path.join(__dirname, '../nodebins/darwin/node');
         }
         config.runtimeArgs = [
-            '--nolazy',
             '--tt-debug'
         ];
         config.console = "internalConsole";
