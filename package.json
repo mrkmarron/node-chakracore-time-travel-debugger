@@ -1,187 +1,187 @@
 {
-  "name": "node-chakracore-time-travel-debugger",
-  "displayName": "NodeChakra Time Travel Debug",
-  "version": "0.1.1",
-  "publisher": "ttd-trace-tools",
-  "description": "Node debugger with time-travel support",
-  "categories": [
-    "Debuggers"
-  ],
-  "author": {
-    "name": "Mark Marron"
-  },
-  "license": "MIT",
-  "private": true,
-  "dependencies": {
-    "vscode-chrome-debug-core": "^3.23.8"
-  },
-  "devDependencies": {
-    "@types/node": "^6.0.52",
-    "tslint": "^5.7.0",
-    "typescript": "^2.6.2",
-    "vsce": "^1.33.2",
-    "vscode": "^1.1.9",
-    "vscode-debugprotocol": "^1.28.0-pre.1"
-  },
-  "main": "./out/extension",
-  "activationEvents": [
-    "onDebug",
-    "onDebugInitialConfigurations",
-    "onDebugResolve:node-chakracore-time-travel-debugger"
-  ],
-  "scripts": {
-    "prepublish": "tsc -p .",
-    "compile": "tsc -p .",
-    "tslint": "tslint ./src/*.ts",
-    "postinstall": "node ./node_modules/vscode/bin/install",
-    "package": "vsce package",
-    "publish": "vsce publish"
-  },
-  "engines": {
-    "vscode": "^1.19.0",
-    "node": "^8.3.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/mrkmarron/node-chakracore-time-travel-debugger"
-  },
-  "bugs": {
-    "url": "https://github.com/mrkmarron/node-chakracore-time-travel-debugger"
-  },
-  "contributes": {
-    "breakpoints": [
-      {
-        "language": "javascript"
-      },
-      {
-        "language": "javascriptreact"
-      }
+    "name": "node-chakracore-time-travel-debugger",
+    "displayName": "NodeChakra Time Travel Debug",
+    "version": "0.1.2",
+    "publisher": "ttd-trace-tools",
+    "description": "Node debugger with time-travel support",
+    "categories": [
+        "Debuggers"
     ],
-    "debuggers": [
-      {
-        "type": "node-chakracore-time-travel-debugger",
-        "label": "NodeChakra Time-Travel v10.0+",
-        "program": "./out/nodeDebugTTD.js",
-        "runtime": "node",
-        "configurationAttributes": {
-          "launch": {
-            "properties": {
-              "program": {
-                "type": "string",
-                "description": "%node.launch.program.description%"
-              },
-              "stopOnEntry": {
-                "type": "boolean",
-                "description": "%node.stopOnEntry.description%",
-                "default": true
-              },
-              "args": {
-                "type": "array",
-                "description": "%node.launch.args.description%",
-                "items": {
-                  "type": "string"
-                },
-                "default": []
-              },
-              "cwd": {
-                "type": "string",
-                "description": "%node.launch.cwd.description%",
-                "default": "${workspaceFolder}"
-              },
-              "env": {
-                "type": "object",
-                "additionalProperties": {
-                  "type": "string"
-                },
-                "description": "%node.launch.env.description%",
-                "default": {}
-              },
-              "sourceMaps": {
-                "type": "boolean",
-                "description": "%node.sourceMaps.description%",
-                "default": true
-              },
-              "outDir": {
-                "type": [
-                  "string",
-                  "null"
-                ],
-                "deprecationMessage": "%outDir.deprecationMessage%",
-                "default": null
-              },
-              "outFiles": {
-                "type": "array",
-                "description": "%node.outFiles.description%",
-                "items": {
-                  "type": "string"
-                },
-                "default": []
-              },
-              "port": {
-                "type": "number",
-                "description": "%node.port.description%",
-                "default": 9229
-              },
-              "address": {
-                "type": "string",
-                "description": "%node.address.description%",
-                "default": "localhost"
-              },
-              "timeout": {
-                "type": "number",
-                "description": "%node.timeout.description%",
-                "default": 10000
-              },
-              "smartStep": {
-                "type": "boolean",
-                "description": "%node.smartStep.description%",
-                "default": true
-              },
-              "sourceMapPathOverrides": {
-                "type": "object",
-                "description": "%node.sourceMapPathOverrides.description%",
-                "default": {}
-              },
-              "skipFiles": {
-                "type": "array",
-                "description": "%node.skipFiles.description%",
-                "default": []
-              },
-              "envFile": {
-                "type": "string",
-                "description": "%node.launch.envFile.description%",
-                "default": "${workspaceFolder}/.env"
-              },
-              "showAsyncStacks": {
-                "type": "boolean",
-                "description": "%node.showAsyncStacks.description%",
-                "default": true
-              },
-              "outputCapture": {
-                "enum": [
-                  "console",
-                  "std"
-                ],
-                "description": "%node.launch.outputCapture.description%",
-                "default": "console"
-              }
+    "author": {
+        "name": "Mark Marron"
+    },
+    "license": "MIT",
+    "private": true,
+    "dependencies": {
+        "vscode-chrome-debug-core": "^3.23.8"
+    },
+    "devDependencies": {
+        "@types/node": "^6.0.52",
+        "tslint": "^5.7.0",
+        "typescript": "^2.6.2",
+        "vsce": "^1.33.2",
+        "vscode": "^1.1.9",
+        "vscode-debugprotocol": "^1.28.0-pre.1"
+    },
+    "main": "./out/extension",
+    "activationEvents": [
+        "onDebug",
+        "onDebugInitialConfigurations",
+        "onDebugResolve:node-chakracore-time-travel-debugger"
+    ],
+    "scripts": {
+        "prepublish": "tsc -p .",
+        "compile": "tsc -p .",
+        "tslint": "tslint ./src/*.ts",
+        "postinstall": "node ./node_modules/vscode/bin/install",
+        "package": "vsce package",
+        "publish": "vsce publish"
+    },
+    "engines": {
+        "vscode": "^1.19.0",
+        "node": "^8.3.0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/mrkmarron/node-chakracore-time-travel-debugger"
+    },
+    "bugs": {
+        "url": "https://github.com/mrkmarron/node-chakracore-time-travel-debugger"
+    },
+    "contributes": {
+        "breakpoints": [
+            {
+                "language": "javascript"
+            },
+            {
+                "language": "javascriptreact"
             }
-          }
-        },
-        "configurationSnippets": [
-          {
-            "label": "Time-Travel Node Launch",
-            "description": "Launch NodeChakraCore in Time-Travel Mode",
-            "body": {
-              "name": "Time-Travel Live",
-              "type": "node-chakracore-time-travel-debugger",
-              "request": "launch",
-              "program": "^\"\\${workspaceFolder}/${1:app.js}\"",
-              "cwd": "^\"\\${workspaceFolder}\""
+        ],
+        "debuggers": [
+            {
+                "type": "node-chakracore-time-travel-debugger",
+                "label": "NodeChakra Time-Travel v10.0+",
+                "program": "./out/nodeDebugTTD.js",
+                "runtime": "node",
+                "configurationAttributes": {
+                    "launch": {
+                        "properties": {
+                            "program": {
+                                "type": "string",
+                                "description": "%node.launch.program.description%"
+                            },
+                            "stopOnEntry": {
+                                "type": "boolean",
+                                "description": "%node.stopOnEntry.description%",
+                                "default": true
+                            },
+                            "args": {
+                                "type": "array",
+                                "description": "%node.launch.args.description%",
+                                "items": {
+                                    "type": "string"
+                                },
+                                "default": []
+                            },
+                            "cwd": {
+                                "type": "string",
+                                "description": "%node.launch.cwd.description%",
+                                "default": "${workspaceFolder}"
+                            },
+                            "env": {
+                                "type": "object",
+                                "additionalProperties": {
+                                    "type": "string"
+                                },
+                                "description": "%node.launch.env.description%",
+                                "default": {}
+                            },
+                            "sourceMaps": {
+                                "type": "boolean",
+                                "description": "%node.sourceMaps.description%",
+                                "default": true
+                            },
+                            "outDir": {
+                                "type": [
+                                    "string",
+                                    "null"
+                                ],
+                                "deprecationMessage": "%outDir.deprecationMessage%",
+                                "default": null
+                            },
+                            "outFiles": {
+                                "type": "array",
+                                "description": "%node.outFiles.description%",
+                                "items": {
+                                    "type": "string"
+                                },
+                                "default": []
+                            },
+                            "port": {
+                                "type": "number",
+                                "description": "%node.port.description%",
+                                "default": 9229
+                            },
+                            "address": {
+                                "type": "string",
+                                "description": "%node.address.description%",
+                                "default": "localhost"
+                            },
+                            "timeout": {
+                                "type": "number",
+                                "description": "%node.timeout.description%",
+                                "default": 10000
+                            },
+                            "smartStep": {
+                                "type": "boolean",
+                                "description": "%node.smartStep.description%",
+                                "default": true
+                            },
+                            "sourceMapPathOverrides": {
+                                "type": "object",
+                                "description": "%node.sourceMapPathOverrides.description%",
+                                "default": {}
+                            },
+                            "skipFiles": {
+                                "type": "array",
+                                "description": "%node.skipFiles.description%",
+                                "default": []
+                            },
+                            "envFile": {
+                                "type": "string",
+                                "description": "%node.launch.envFile.description%",
+                                "default": "${workspaceFolder}/.env"
+                            },
+                            "showAsyncStacks": {
+                                "type": "boolean",
+                                "description": "%node.showAsyncStacks.description%",
+                                "default": true
+                            },
+                            "outputCapture": {
+                                "enum": [
+                                    "console",
+                                    "std"
+                                ],
+                                "description": "%node.launch.outputCapture.description%",
+                                "default": "console"
+                            }
+                        }
+                    }
+                },
+                "configurationSnippets": [
+                    {
+                        "label": "Time-Travel Node Launch",
+                        "description": "Launch NodeChakraCore in Time-Travel Mode",
+                        "body": {
+                            "name": "Time-Travel Live",
+                            "type": "node-chakracore-time-travel-debugger",
+                            "request": "launch",
+                            "program": "^\"\\${workspaceFolder}/${1:app.js}\"",
+                            "cwd": "^\"\\${workspaceFolder}\""
+                        }
+                    }
+                ]
             }
-          }
         ]
-      }
-    ]
-  }
+    }
 }
