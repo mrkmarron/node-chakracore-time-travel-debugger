@@ -6,6 +6,14 @@ debugger logic this extension provides:
 1. [NodeChakraCore binaries](https://github.com/nodejs/node-chakracore) with time-travel debugging functionality.
 2. Launch configuration for mixed live/time-travel debugging.
 
+# Notes
+1. The debugger always uses the extension provided NodeChakraCore binaries. If 
+your application depends on a specific version of Node you may encounter 
+unusual behavior.
+2. Time-Travel mode is **not** enabled until synchronous module loading has completed and Node is running asynchronous event-loop code. 
+
+# Usage
+
 ## Initiating Time-Travel
 The `TTD Enabled` launch configuration will launch the application in `live` 
 debugging mode where you can debug just as with the regular Node debugger. 
@@ -29,15 +37,6 @@ functionality is provided and can be added via the `Add Configuration` dialog
 as shown here:
 
 ![Add Launch Configuration](./images/launch-config-small.gif)
-
-# Notes
-1. The debugger always uses the extension provided NodeChakraCore binaries. If 
-your application depends on a specific version of Node you may encounter 
-unusual behavior.
-2. Time-Travel mode is not enabled until synchronous module loading has completed and Node is running asynchronous event-loop code. 
-3. Currently this extension is only intended for Visual Studio Code 
-**Insiders**. Using it in other versions will cause the *live* debug session 
-to become inoperable once the time-travel session is launched.
 
 ## License
 

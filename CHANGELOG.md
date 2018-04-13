@@ -1,5 +1,8 @@
 # Change Log
-## [0.1.1]
+## [0.1.3]
+- Update Node-ChakraCore binaries to [v8.11.1](https://github.com/nodejs/node-chakracore/releases).
+
+## [0.1.2]
 - Better message on step back during synchronous module load.
 - General fixes of odd behavior (custom build of Win32 binaries only in initial patch).
 
