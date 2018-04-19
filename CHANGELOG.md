@@ -1,4 +1,7 @@
 # Change Log
+## [0.1.5]
+- Fix file permission issues on linux/dawin binaries in publishing.
+
 ## [0.1.3]
 - Update Node-ChakraCore binaries to [v8.11.1](https://github.com/nodejs/node-chakracore/releases).
 
