@@ -1,7 +1,7 @@
 {
     "name": "node-chakracore-time-travel-debugger",
     "displayName": "NodeChakra Time Travel Debug",
-    "version": "0.1.3",
+    "version": "0.1.4",
     "publisher": "ttd-trace-tools",
     "description": "Node debugger with time-travel support",
     "categories": [
