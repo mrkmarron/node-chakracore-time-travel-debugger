@@ -1,4 +1,7 @@
 # Change Log
+## [0.1.6]
+- Update Node.js binaries to Node-ChakraCore 10 release versions.
+
 ## [0.1.5]
 - Fix file permission issues on linux/dawin binaries in publishing.
 

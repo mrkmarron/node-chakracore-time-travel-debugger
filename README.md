@@ -1,16 +1,21 @@
 # Node Debugger with mixed Live and Time-Travel support
 
 This debugger provides a launch configurations and support for mixing live and 
-time-travel debugging in Node.js. In addition to the Visual Studio Code 
+time-travel debugging in Node.js 10+. In addition to the Visual Studio Code 
 debugger logic this extension provides:
-1. [NodeChakraCore binaries](https://github.com/nodejs/node-chakracore) with time-travel debugging functionality.
+1. [NodeChakraCore binaries](https://github.com/nodejs/node-chakracore) with 
+time-travel debugging functionality.
 2. Launch configuration for mixed live/time-travel debugging.
 
 # Notes
 1. The debugger always uses the extension provided NodeChakraCore binaries. If 
 your application depends on a specific version of Node you may encounter 
 unusual behavior.
-2. Time-Travel mode is **not** enabled until synchronous module loading has completed and Node is running asynchronous event-loop code. 
+2. Time-Travel mode is **not** enabled until synchronous module loading has 
+completed and Node is running asynchronous event-loop code. 
+3. A directory called `_ttd_log_` will be created in the project root to hold 
+the time-travel trace files. You may want to add this to your `.gitignore`.
+
 
 # Usage
 
