@@ -292,7 +292,7 @@ export class NodeDebugTTDAdapter extends ChromeDebugAdapter {
 
             const debugArgs = detectSupportedDebugArgsForLaunch(args);
             let launchArgs = [];
-            if (!args.noDebug && !args.port) {
+            if (!args.noDebug) {
                 // Always stop on entry to set breakpoints
                 if (debugArgs === DebugArgs.Inspect_DebugBrk) {
                     launchArgs.push(`--inspect=${port}`);
