@@ -77,7 +77,8 @@ class NodeDebugTTDConfigurationProvider implements vscode.DebugConfigurationProv
             config.runtimeExecutable = path.join(__dirname, '../nodebins/darwin/node');
         }
         config.runtimeArgs = [
-            '--tt-debug'
+            '--tt-debug',
+            '--disable-auto-trace'
         ];
         config.console = "internalConsole";
 

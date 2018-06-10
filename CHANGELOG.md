@@ -1,4 +1,11 @@
 # Change Log
+## [0.2.2]
+- Update params to disable trace dump in linve TTD.
+
+## [0.2.1]
+- Update Node.js binaries to Node-ChakraCore 10.1.0
+- Fix issue "Setting a default port #4" -- thanks AaronW9090
+
 ## [0.2.0]
 - Update Node.js binaries to Node-ChakraCore 10 release versions.
 
