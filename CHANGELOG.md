@@ -1,5 +1,5 @@
 # Change Log
-## [0.2.2]
+## [0.2.4]
 - Update Node.js binaries to Node-ChakraCore 10.6.0 release versions.
 - Fix kill process bug on OSX.
 

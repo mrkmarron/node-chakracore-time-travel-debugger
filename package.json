@@ -1,7 +1,7 @@
 {
     "name": "node-chakracore-time-travel-debugger",
     "displayName": "NodeChakra Time Travel Debug",
-    "version": "0.2.2",
+    "version": "0.2.4",
     "publisher": "ttd-trace-tools",
     "description": "Node debugger with time-travel support",
     "categories": [
@@ -30,8 +30,8 @@
         "onDebugResolve:node-chakracore-time-travel-debugger"
     ],
     "scripts": {
-        "prepublish": "tsc -p .",
-        "compile": "tsc -p .",
+        "prepublish": "tsc -p . 2>&1 || true && cp src/terminateProcess.sh out/terminateProcess.sh",
+        "compile": "tsc -p . 2>&1 || true && cp src/terminateProcess.sh out/terminateProcess.sh",
         "tslint": "tslint ./src/*.ts",
         "postinstall": "node ./node_modules/vscode/bin/install",
         "package": "vsce package",
