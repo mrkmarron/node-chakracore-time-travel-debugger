@@ -1,6 +1,10 @@
 # Change Log
 ## [0.2.2]
-- Update params to disable trace dump in linve TTD.
+- Update Node.js binaries to Node-ChakraCore 10.6.0 release versions.
+- Fix kill process bug on OSX.
+
+## [0.2.2]
+- Update params to disable trace dump in line TTD.
 
 ## [0.2.1]
 - Update Node.js binaries to Node-ChakraCore 10.1.0
