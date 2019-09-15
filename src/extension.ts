@@ -72,7 +72,7 @@ class NodeDebugTTDConfigurationProvider implements vscode.DebugConfigurationProv
         if (process.platform === 'win32') {
             config.runtimeExecutable = path.join(__dirname, '../nodebins/win32/node.exe');
         } else if (process.platform === 'linux') {
-            config.runtimeExecutable = path.join(__dirname, '../nodebins/linux/node.exe');
+            config.runtimeExecutable = path.join(__dirname, '../nodebins/linux/node');
         } else {
             config.runtimeExecutable = path.join(__dirname, '../nodebins/darwin/node');
         }
@@ -88,5 +88,3 @@ class NodeDebugTTDConfigurationProvider implements vscode.DebugConfigurationProv
     dispose() {
     }
 }
-
-
